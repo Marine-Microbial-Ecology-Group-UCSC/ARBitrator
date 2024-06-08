@@ -1,0 +1,90 @@
+
+Overview of how to run ARBitrator and get just the new sequences for input into the
+ARB nifH DB.
+
+1. From a *bash* shell, run ARBitrator with the script runARBitrator.sh as
+   follows:
+
+      runARBitrator.sh >> log.txt 2>&1 &
+
+   or if you have an NCBI API key
+
+      runARBitrator.sh YOUR_API_KEY >> log.txt 2>&1 &
+
+   See contents of this script for ARB parameters e.g. the name of the file that
+   has the list of nifH representatives.
+   Note the '>>' to append to log.txt in case you have to restart.  (2>&1
+   sends both stdout and stderr to the same place, here 'log.txt.') Even better,
+   if you have to relaunch due to a crash or if NCBI stops responding, use a
+   new log each time (log2.txt, log3.txt, ...).
+
+
+The following steps mostly deal with making sure NCBI has not forgotten about us
+or sent us some unexpected reply that crashed ARBitrator.  You can restart
+ARBitrator and it will resume from where it left off (but note instructions
+below e.g. in #3 you might have to remove a corrupted blast output).
+
+
+2. In 10-20 minutes, check how the blast searches are doing:
+   Any problems reported in the log file?
+
+      tail -n 50 log.txt
+
+   If so, kill the processes for the bash script runARBitrator.sh and
+   ARBitrator, if necessary.  Do "ps aux | grep myusername" to get the process
+   ids, then kill them with "kill -9 id1 id2".
+
+3. In an hour or so, how do the blasts look?  Check the log again.  Also check
+   in the 'work' directory that blast outputs are not prematurely terminated.
+   Specifically, check blasts that seem to have completed based on the log file
+   and a time stamp that shows no update in awhile. For example:
+
+      tail blast_hits_<ID>    # Does this end with </PRE> and a few blank lines?  Good!
+                              # If not, then either this blast is still going or, if it
+                              # is taking too long, the NCBI stopped talking to us and
+                              # you should delete the incomplete blast results.
+                              # (ARBitrator should report if the blast stalled and if
+                              # the results are incomplete, but it is good to check and
+                              # to be aware of he issue.)
+
+    It may take several hours for the blasts to complete.  It is not uncommon
+    for some to complete and then for the NCBI to stop talking to us (despite
+    ARBitrator staying below the max allowed request rate). If so, kill the
+    runARBitrator.sh ARBitrator processes as described in #2 and relaunch
+    as in #1.
+
+4. Eventually ARBitrator will begin to generate EMBL files within
+   work/finished_embls.  During this stage I have often had to relaunch because
+   NCBI stopped responding.  Usually, the stall happens within a short time of
+   beginning the EMBL downloads (<20 min) so check frequently at first for
+   stalls by:
+
+      tail log.txt  # Does it say something like:
+                    #   Generating EMBL for 121 of 48806, accession or gi =AAC36042.2...
+                    # but nothing after, and is the timestamp for log.txt is more
+                    # than a few minutes old?  Then NCBI stalled.  See #2 to kill
+                    # the script and ARBitrator and see #1 to relaunch the script.
+
+   If you relaunch, ARBitrator will do some RPS BLASTs again but this will not
+   take long. Then ARBitrator will resume downloading of just the missing EMBL
+   files (and it will indicate which EMBL's it already has).
+
+
+Repeat the above steps until the script finishes: The last lines of log.txt
+should look like:
+
+    Finished generating EMBL files.
+    -----------------------------
+    Normal completion of pipeline
+    ----------------------------
+
+    DONE
+
+
+5. ARBitrator will have downloaded everything nifH-like (that it could), but you
+   want to import just the new nifH sequences into the ARB nifH database.  To
+   figure out which are new and to generate a concatenated EMBL file with just
+   the new sequences, run the script "getNewAccessions.sh". To see the usage
+   notes, run it with no arguments.
+
+6. Kendra knows how to import the new EMBLs into ARB:)

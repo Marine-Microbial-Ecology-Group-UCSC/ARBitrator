@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Class-Path: . readseq.jar
+Created-By: 1.8.0_101 (Oracle Corporation)
+Main-Class: arbitrator.pipeline.Pipeline
+

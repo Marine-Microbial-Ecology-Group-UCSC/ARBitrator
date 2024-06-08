@@ -1,0 +1,12 @@
+If you want to make a new ARBitrator distribution (and have already installed
+the Java Development kit**), then do the following in a unix shell:
+  cd Workdir
+  ../scripts/makeARBitrator.sh date_or_description
+
+This will create ARBitrator.date_or_description.tgz which includes everything a
+user needs to run ARBitrator, including a README which describes how to run the
+wrapper script runARBitrator.sh
+
+
+**makeARBitrator.sh requres the Java compiler (javac) and archiver (jar) which
+  are both included in the Java Development Kit (JDK).
