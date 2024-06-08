@@ -1,2 +1,2 @@
 # ARBitrator
-ARBitrator tool for retrieving nifH genes from GenBank. Original software created by Philip Heller (Heller et al., 2014; https://doi.org/10.1093/bioinformatics/btu417)
+ARBitrator is a semi-automatic pipeline for retrieving and quality-filtering _nifH_ genes in GenBank.  It was created by Philip Heller (Heller et al., 2014; https://doi.org/10.1093/bioinformatics/btu417). Since then small modifications have been made to accomodate changes on the NCBI side including the retirement of GI numbers, requiring HTTPS, and faster query rates when using API keys.  Functionally the lastest ARBitrator is the same as the  original.
