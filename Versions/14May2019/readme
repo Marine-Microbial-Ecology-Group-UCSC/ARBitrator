@@ -1,0 +1,9 @@
+The original ARBitrator described in Heller et al. 2014 is in
+../2014_original/ARBitrator_1.0.zip.  The zip file includes instructions for the
+original ARBitrator which you may find helpful.  However, please use the updated
+ARBitrator software.
+
+The updated ARBitrator in ARBitrator.14May2019.tgz adapts to NCBI changes since
+2014, mainly the switch from GI’s to accessions and from “http” to “https”.  There
+is a README in the tgz that describes how to run the updated ARBitrator via some
+provided shell scripts.

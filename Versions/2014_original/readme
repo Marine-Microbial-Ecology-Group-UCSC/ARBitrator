@@ -1,0 +1,9 @@
+This is Phil Heller's original ARBitrator distribution.  The underlying source
+code, modified to keep pace with NCBI changes, is available in the GitHub repo
+under Build_ARBitrator/Workdir/arbitrator.  Please run only the most recent
+version of ARBitrator.
+
+Newer versions of ARBitrator include a README which describes how to run
+ARBitrator using the script runARBitrator.sh.  Original ARBitrator was run by
+invoking 'java' as described in the 2014 paper and in
+ARBitratorInstructions.docx in ARBitrator_1.0.zip.

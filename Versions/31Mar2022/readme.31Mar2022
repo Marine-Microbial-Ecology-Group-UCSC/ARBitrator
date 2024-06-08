@@ -1,0 +1,17 @@
+ARBitrator Results:
+   This latest run is from Maintenance/Testing_23March2022, which really finished on the 27/28th.
+   There is a readme.testing there with more info.  March 27, 2022 version of ARBitrator was used.
+
+   ARBitrator failed to create ~8K EMBL records.  This appears to be due to problems with the
+   GenPept records themselves based on inspecting ~30 of them (see readme.test).
+
+   newEMBL.txt.gz has 5891 EMBL records which appear to be new relative to the
+   June 2017 database.  (See Maintenance/Testing_23March2022/DetermineNewAccessions/readme)
+
+
+ARBitrator version: ARBitrator.31Mar2022.tgz
+   This version is very similar to the one used to generate the Results described above.
+   It has two changes: (1) Only use API keys for Eutils requests because only Eutils supports
+   them. (2) In all URLs include the parameters "tool" (ARBitrator) and "email" of the developer
+   (jmagasin@gmail.com) so that NCBI will notify me e.g. if ARBitrator makes too many requests.
+      [ They specifically ask for the developer's email, not the end user. ]
